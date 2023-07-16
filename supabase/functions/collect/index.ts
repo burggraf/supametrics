@@ -89,7 +89,7 @@ serve(async (req) => {
 
 curl -i --location --request GET \
 'https://eyjslsbgyvsmhdzkxkzu.supabase.co/functions/v1/collect' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV5anNsc2JneXZzbWhkemt4a3p1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODk1MTU4NDAsImV4cCI6MjAwNTA5MTg0MH0.2asO7nwGhndoL52q63HQ0IvrcmtAS8uv1a-sl7TQcsE'
+--header 'Authorization: Bearer <anon_token>'
 
  */
 
