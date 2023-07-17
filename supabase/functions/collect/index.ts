@@ -88,16 +88,34 @@ serve(async (req) => {
 // To invoke:
 
 curl -i --location --request GET \
-'https://eyjslsbgyvsmhdzkxkzu.supabase.co/functions/v1/collect' \
+'https://<project-ref>.supabase.co/functions/v1/collect' \
 --header 'Authorization: Bearer <anon_token>'
 
  */
 
 /**
+ 
  CREATE TABLE IF NOT EXISTS metrics_data (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     project_ref VARCHAR(255),
     metrics_data JSONB
+);
+ALTER TABLE metrics_data ENABLE ROW LEVEL SECURITY;
+
+SELECT cron.schedule(
+	'collect_metrics',
+	'* * * * *', -- Executes every minute (cron syntax)
+	$$
+	    -- SQL query
+	    SELECT net.http_get(
+		-- URL of Edge function
+		url:='https://<project-ref>.functions.supabase.co/collect',
+		headers:='{
+		    "Content-Type": "application/json",
+		    "Authorization": "Bearer <anon_token>"
+		}'::JSONB
+	    ) as request_id;
+	$$
 );
  */
