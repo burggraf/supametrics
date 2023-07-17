@@ -95,7 +95,7 @@ curl -i --location --request GET \
 
 /**
  
- CREATE TABLE IF NOT EXISTS metrics_data (
+CREATE TABLE IF NOT EXISTS metrics_data (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     project_ref VARCHAR(255),
